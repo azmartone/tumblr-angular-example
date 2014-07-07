@@ -142,7 +142,8 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'dist/js/<%= pkg.name %>.min.js': ['dist/js/<%= pkg.name %>.js'],
-                    'dist/js/<%= pkg.name %>-vendors.min.js': ['dist/js/<%= pkg.name %>-vendors.js']
+                    'dist/js/<%= pkg.name %>-vendors.min.js': ['dist/js/<%= pkg.name %>-vendors.js'],
+                    'dist/css/<%= pkg.name %>-vendors.min.css': ['dist/css/<%= pkg.name %>-vendors.css']
                 }
             }
         },
@@ -160,6 +161,10 @@ module.exports = function(grunt) {
             }
         },
         watch: {
+            coffee : {
+                files: ['<%= coffee.glob_to_multiple.cwd + "*.coffee" %>'],
+                tasks: ['coffee' ]
+            },
             js : {
                 files: ['<%= jshint.files %>'],
                 tasks: ['jshint' , 'concat:dev' ]
@@ -226,11 +231,23 @@ module.exports = function(grunt) {
                 }
             }
 
+        },
+        coffee: {
+            glob_to_multiple: {
+                expand: true,
+                flatten: true,
+                cwd: 'src/coffee/',
+                src: ['*.coffee'],
+                dest: 'src/js/',
+                ext: '.js'
+            }
         }
+
 
     });
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-bower');
+    grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -247,10 +264,11 @@ module.exports = function(grunt) {
     grunt.registerTask('setup', ['bower' , 'dev']);
     grunt.registerTask('deploy', ['bower' , 'dist']);
 
-    grunt.registerTask('default', ['jshint', 'concat:dev','stylus:dev', 'template:dev' , 'newer:copy:dev', 'watch',  'connect:dev' ]);
+    grunt.registerTask('default', ['coffee', 'jshint', 'concat:dev','stylus:dev', 'template:dev' , 'newer:copy:dev', 'connect:dev', 'watch' ]);
     grunt.registerTask('dev', ['default']);
-    grunt.registerTask('dist', ['jshint', 'concat:dist', 'uglify' , 'stylus:dist', 'cssmin' ,'template:dist' , 'newer:imagemin:dist' , 'clean']);
+    grunt.registerTask('dist', ['coffee', 'jshint', 'concat:dist', 'uglify' , 'stylus:dist', 'cssmin' ,'template:dist' , 'newer:imagemin:dist' , 'clean']);
     grunt.registerTask('dist:test', ['dist', "connect:dist:keepalive"]);
  
+
    
 };
