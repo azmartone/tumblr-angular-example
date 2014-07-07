@@ -1,7 +1,7 @@
 #Starter Project
 
 ####Description
-A simple starter project using grunt.
+A simple starter project using grunt. Forked from https://github.com/pr1ntr/starter
 
 ####Features
 * CSS is compile from stylus. Minified for disitribution
