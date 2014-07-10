@@ -104,11 +104,11 @@ module.exports = function(grunt) {
           dev: {
             // the files to concatenate
             files: {
-                // 'dev/js/<%= pkg.name %>.js' : [
+                'dev/js/<%= pkg.name %>.js' : [
                    
-                //     'src/js/base.js',
-                //     'src/js/**/*.js'
-                // ],
+                    'src/js/base.js',
+                    'src/js/**/*.js'
+                ],
                 'dev/js/<%= pkg.name %>-vendors.js' : [
                     'src/vendor/js/**/*.js'
                 ],
@@ -120,11 +120,11 @@ module.exports = function(grunt) {
           dist: {
             // the files to concatenate
             files: {
-                // 'dist/js/<%= pkg.name %>.js' : [
+                'dist/js/<%= pkg.name %>.js' : [
                    
-                //     'src/js/base.js',
-                //     'src/js/**/*.js'
-                // ],
+                    'src/js/base.js',
+                    'src/js/**/*.js'
+                ],
                 'dist/js/<%= pkg.name %>-vendors.js' : [
                     'src/vendor/js/**/*.js'
                 ],
@@ -161,10 +161,10 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            coffee : {
-                files: ['src/coffee/*.coffee'],
-                tasks: ['browserify' ]
-            },
+            // coffee : {
+            //     files: ['<%= coffee.glob_to_multiple.cwd + "*.coffee" %>'],
+            //     tasks: ['coffee' ]
+            // },
             js : {
                 files: ['<%= jshint.files %>'],
                 tasks: ['jshint' , 'concat:dev' ]
@@ -193,6 +193,7 @@ module.exports = function(grunt) {
                         dest: "dev/images/",
                         filter: 'isFile'
                     }
+
                 ]
             }
         },  
@@ -230,25 +231,34 @@ module.exports = function(grunt) {
                 }
             }
 
-        },
-        browserify:{
-            "dev": {
-                "files": {
-                    "dev/js/<%= pkg.name %>.js" : ["src/coffee/main.coffee"]
-                }
-            },
-            "options": {
-                "require": ["tumblr.js", "browser-request"],
-                "transform": ["coffeeify"]
-            }
-
         }
+        // ,
+        // coffee: {
+        //     glob_to_multiple: {
+        //         expand: true,
+        //         flatten: true,
+        //         cwd: 'src/coffee/',
+        //         src: ['*.coffee'],
+        //         dest: 'src/js/',
+        //         ext: '.js'
+        //     }
+        // }
+        // ,
+        // browserify: {
+        //   dev: {
+        //     files: {
+        //       'dev/<%= pkg.name %>.js': ['src/js/*.js'],
+        //     }
+        //   }
+        // }
 
 
     });
-
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-bower');
+    // grunt.loadNpmTasks('grunt-coffeeify');
+    // grunt.loadNpmTasks('grunt-browserify');
+    // grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -260,15 +270,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-template-html');
-    grunt.loadNpmTasks('grunt-browserify');
 
     
     grunt.registerTask('setup', ['bower' , 'dev']);
     grunt.registerTask('deploy', ['bower' , 'dist']);
 
-    grunt.registerTask('default', ['jshint', 'concat:dev', 'browserify', 'stylus:dev', 'template:dev' , 'newer:copy:dev', 'connect:dev', 'watch' ]);
+    grunt.registerTask('default', ['jshint', 'concat:dev', 'stylus:dev', 'template:dev' , 'newer:copy:dev', 'connect:dev', 'watch' ]);
     grunt.registerTask('dev', ['default']);
-    grunt.registerTask('dist', ['jshint', 'concat:dist', 'browserify', 'uglify' , 'stylus:dist', 'cssmin' ,'template:dist' , 'newer:imagemin:dist' , 'clean']);
+    grunt.registerTask('dist', ['jshint', 'concat:dist', 'uglify' , 'stylus:dist', 'cssmin' ,'template:dist' , 'newer:imagemin:dist' , 'clean']);
     grunt.registerTask('dist:test', ['dist', "connect:dist:keepalive"]);
  
 
