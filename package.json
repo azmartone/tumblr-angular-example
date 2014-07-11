@@ -38,8 +38,7 @@
     "browserify-shim": "~3.6.0",
     "browser-request": "~0.3.1",
     "brfs": "~1.1.2",
-    "tumblr": "~0.4.1",
-    "tumblr.js": "0.0.4"
+    "tumblr.js": "git+https://github.com/azmartone/tumblr.js.git"
   },
   "browser": {
     "jquery": "./src/vendor/js/jquery.js"
