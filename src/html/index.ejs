@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html data-cdn="<%= cdn_root %>" >
+<html data-cdn="<%= cdn_root %>" lang="en" ng-app="myApp">
 <head>
     <title><%= data.title %></title>
 
-    {block:Hidden}
+<!--     {block:Hidden}
     <meta name="text:JS CSS File Path" content="http://localhost:3001/">
-    {/block:Hidden}
+    {/block:Hidden} -->
 
-    <script type="text/javascript" src="{text:JS CSS File Path}js/<%= data.name %>-vendors.<%= suffix %>js"></script>
-    <script type="text/javascript" src="{text:JS CSS File Path}js/<%= data.name %>.<%= suffix  %>js"></script>
-    <link rel="stylesheet" type="text/css" href="{text:JS CSS File Path}css/<%= data.name %>-vendors.<%= suffix %>css">
-    <link rel="stylesheet" type="text/css" href="{text:JS CSS File Path}css/<%= data.name %>.<%= suffix %>css">
+   <link rel="stylesheet" type="text/css" href="css/<%= data.name %>-vendors.<%= suffix %>css">
+    <link rel="stylesheet" type="text/css" href="css/<%= data.name %>.<%= suffix %>css">
 
 </head>
 <body>
-<script type="text/javascript">
 
+    <ul class="menu">
+        <li><a href="#/view1">view1</a></li>
+        <li><a href="#/view2">view2</a></li>
+    </ul>
 
+    <!-- A simple AngularJS view -->
+    <div ng-view></div>
 
-    
+    <!-- This script will be bundled by the browserify task into dist/js/app.js -->
+    <!-- You should only ever really need this one script tag -->
 
-</script>
+    <script type="text/javascript" src="js/<%= data.name %>-vendors.<%= suffix %>js"></script>
+    <script type="text/javascript" src="js/<%= data.name %>.<%= suffix  %>js"></script>
+    <script type="text/javascript"></script>
 
 </body>
 </html> 
