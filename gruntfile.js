@@ -234,12 +234,11 @@ module.exports = function(grunt) {
         browserify:{
             "dev": {
                 "files": {
-                    "dev/js/<%= pkg.name %>.js" : ["src/coffee/main.coffee"]
+                    "dev/js/<%= pkg.name %>.js" : ["src/js/*.js"]
                 }
             },
             "options": {
-                "require": ["tumblr.js", "browser-request", "angular", "angular-route"],
-                "transform": ["coffeeify"]
+                "require": ["tumblr.js", "browser-request", "angular", "angular-route"]
             }
 
         }
