@@ -161,13 +161,9 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            coffee : {
-                files: ['src/coffee/*.coffee'],
-                tasks: ['browserify' ]
-            },
             js : {
                 files: ['<%= jshint.files %>'],
-                tasks: ['jshint' , 'concat:dev' ]
+                tasks: ['jshint' , 'concat:dev', 'browserify:dev' ]
             },
             css : {
                 files: ['<%= stylus.dev.options.paths +"/**/*.styl" %>'],

@@ -7,20 +7,28 @@ require('angular-route');
 require('./services');
 require('./filters');
 
+
+
 //then include them into your app
 angular.module('myApp', ['ngRoute', 'myApp.services', 'myApp.filters'])
   .config(['$routeProvider', function($routeProvider) {
     // $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html'});
     // $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html'});
     // $routeProvider.otherwise({redirectTo: '/view1'});
-  }])
-  .controller('mainController', ['$scope', function($scope){
-    //Grab the tumblr posts
-
-    //
+  }]).controller('mainController', ['$scope','tumblrService' , function($scope, tumblrService){
 
     $scope.posts = [];
+    $scope.blog = null;
+
+    var promise = tumblrService.getFoo();
+
+    promise.then(function(greeting) {
+        console.dir(greeting);
+        $scope.posts = greeting.posts;
+      }, function(reason) {
+        console.log('Failed: ' + reason);
+      }, function(update) {
+        console.log('Got notification: ' + update);
+    });
+    
   }]);
-
-
-/* Tumblr API Stuff */
