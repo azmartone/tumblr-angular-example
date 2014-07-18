@@ -23,6 +23,11 @@
 
 
 
+        <img class="swagger"
+            ng-repeat="src in imageLocations"
+            ng-src="{{ src }}"
+            style="width: 100px ; margin-right: 10px ;"
+            />
 
         <div ng-switch="isLoading">
      
@@ -39,11 +44,11 @@
      
                 <p ng-switch-when="true">
      
-                    <!--img
+                    <img class="post-image"
                         ng-repeat="src in imageLocations"
                         ng-src="{{ src }}"
                         style="width: 100px ; margin-right: 10px ;"
-                        /-->
+                        />
      
                 </p>
      

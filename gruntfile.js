@@ -234,7 +234,7 @@ module.exports = function(grunt) {
                 }
             },
             "options": {
-                "require": ["tumblr.js", "browser-request", "angular", "angular-route"]
+                "require": ["tumblr.js", "browser-request", "angular", "angular-route", "angular-module-animate"]
             }
 
         }

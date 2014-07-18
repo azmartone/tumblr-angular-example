@@ -4,13 +4,15 @@
 
 var angular = require('angular');
 require('angular-route');
+require('angular-module-animate');
+require('./animations');
 require('./services');
 require('./filters');
 
 
 
 //then include them into your app
-angular.module('myApp', ['ngRoute', 'myApp.services', 'myApp.filters'])
+angular.module('myApp', ['ngRoute', 'ngAnimate', 'myApp.services', 'myApp.filters', 'AppAnimations'])
   .config(['$routeProvider', function($routeProvider) {
     // $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html'});
     // $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html'});
@@ -21,6 +23,9 @@ angular.module('myApp', ['ngRoute', 'myApp.services', 'myApp.filters'])
     $scope.blog = null;
     $scope.imageLocations = [];
 
+    $scope.isLoading = true;
+    $scope.isSuccessful = false;
+    $scope.percentLoaded = 0;
 
 
     var promise = tumblrService.getFoo();
