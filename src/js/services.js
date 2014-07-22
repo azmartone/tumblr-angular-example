@@ -12,7 +12,7 @@ angular.module('myApp.services', [])
             getFoo: function(callback) {
                 var deferred = $q.defer();
 
-                client.posts("duong-awat.tumblr.com", {
+                client.posts("dduong-tp.tumblr.com", {
 
                     limit: 50,
                     reblog_info: true,

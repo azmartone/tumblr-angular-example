@@ -244,6 +244,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-bower');
+    grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -255,7 +256,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-template-html');
-    grunt.loadNpmTasks('grunt-browserify');
 
     
     grunt.registerTask('setup', ['bower' , 'dev']);
