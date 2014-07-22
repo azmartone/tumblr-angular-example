@@ -1,11 +1,15 @@
-#Tumblr API Starter Project
+#Tumblr Angular Starter Project
 
 ####Description
 
-A simple starter project using grunt. Forked from https://github.com/pr1ntr/starter. 
-
 It includes the tumblr.js module that allows you to access tumblr post data. Please change the API Keys accordingly.
 
+Added
+
+* Angular
+* Browserify
+* Preload
+* Animation
 
 ####Features
 * CSS is compile from stylus. Minified for disitribution
